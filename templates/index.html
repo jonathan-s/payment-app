@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block headline %}
+Welcome to a simple payment app
+{% endblock headline %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <a href="{{ url_for('account_list') }}"><h2 class="title">Accounts</h2></a>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ url_for('payment') }}"><h2 class="title">Payments</h2></a>
+    </div>
+</div>
+{% endblock %}

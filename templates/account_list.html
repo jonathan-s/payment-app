@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block headline %}
+    Accounts
+{% endblock headline %}
+
+{% block content %}
+    <div class="col-md-4"><h2>Account name</h2></div>
+    <div class="col-md-4"><h2>Email</h2></div>
+    <div class="col-md-4"><h2>Balance</h2></div>
+    {% for account in accounts %}
+        <div class="col-md-4">
+            <a href="{{ url_for('account_view', id=account.id) }}">{{ account.name }}</a>
+        </div>
+        <div class="col-md-4">
+            {{ account.email }}
+        </div>
+        <div class="col-md-4">
+            {{ account.balance }}
+        </div>
+    {% endfor %}
+
+{% endblock content %}

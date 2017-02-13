@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block headline %}
+    <h1>Payment</h1>
+{% endblock headline %}
+
+{% block content %}
+<div class="payment-form">
+    <form class="form-group" method="POST" action="{{ url_for('payment') }}">
+    {% for field in form %}
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label" for="{{ field.name }}">{{ field.label.text }}</label>
+            <div class="col-10">
+                {{ field(class_='form-control') }}
+                {% for subfield in field.select %}
+                    <option value="{{ subfield.id }}">{{ subfield.name }}</option>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% if form.errors %}
+        <ul class="errors">
+            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                {% for error in field_errors %}
+                    <li>{{ form[field_name].label }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        {{ error }}
+    {% endif %}
+    </form>
+
+</div>
+{% endblock content %}

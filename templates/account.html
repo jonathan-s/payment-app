@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block headline %}
+    Transactions for {{ account.name }}
+{% endblock headline %}
+
+{% block content %}
+        <div class="col-md-6">
+            <h2>Timestamp</h2>
+        </div>
+        <div class="col-md-6">
+            <h2>Amount</h2>
+        </div>
+    {% if transactions %}
+        {% for transaction in transactions %}
+        <div class="col-md-6">
+            {{ transaction.timestamp }}
+        </div>
+        <div class="col-md-6">
+            {{ transaction.amount }}
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No transactions to be seen here</p>
+    {% endif %}
+
+
+{% endblock %}
